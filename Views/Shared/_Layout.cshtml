@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Drive</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Drive.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light">
+        <div class="container-fluid d-flex align-items-end justify-content-end gap-0 pm-2">
+            <h2 class="text-center" style="margin-right: 13em;">Chào mừng bạn đến với DOCTYPE</h2>
+            <a href="#" class="me-3 text-dark"><i class="bi bi-question-circle"></i></a>
+            <a href="#" class="me-3 text-dark"><i class="bi bi-gear"></i></a>
+            <a asp-action="Logout" asp-controller="Account"><img src="~/Image/avatar-vo-danh-11.jpg" alt="User Profile"
+                    class="rounded-circle"></a>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="sidebar">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-file-alt" style="color: #f97316; font-size: 2.5em; margin-right: 0.5em;"></i>
+                    <span class="fs-5 fw-bold" style="color: #6b7280; font-size: 3em;">DOCTYPE</span>
+                </div>
+                <div class="dropdown">
+                    <button class="btn-new btn-lg m-3 d-inline-flex align-items-center justify-content-center"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="padding-top: 1.2em">
+                        <span class="dropdown-toggle"></span>
+                        <p><span style="font-size: 1.2em;">+</span> Mới</p>
+                    </button>
+                    <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item d-flex align-items-center text-dark"
+                                href="https://docs.google.com/document/create" target="_blank"
+                                style="padding-left: 17px;"><i class="fas fa-file me-2"></i>Tệp mới</a></li>
+                        <li><a class="dropdown-item d-flex align-items-center text-dark" href="#" data-bs-toggle="modal"
+                                data-bs-target="#createFolderModal" style="padding-left: 17px;"><i
+                                    class="fas fa-folder me-2"></i>Thư mục mới</a></li>
+                        <li>
+                            <form asp-action="UploadFile" asp-controller="File" enctype="multipart/form-data"
+                                class="dropdown-item d-flex align-items-center text-dark">
+                                <label for="fileUpload" class="d-flex align-items-center text-dark"
+                                    style="cursor: pointer;"><i class="fas fa-file-upload me-2"></i>Tải tệp lên</label>
+                                <input type="hidden" name="FolderId" value="@ViewBag.FolderId">
+                                <input type="file" id="fileUpload" name="file" style="display: none;"
+                                    onchange="this.form.submit()">
+                            </form>
+                        </li>
+                        <li>
+                            <form asp-action="#" asp-controller="Folder" method="post" enctype="multipart/form-data"
+                                class="dropdown-item d-flex align-items-center text-dark">
+                                <label for="folderUpload" class="d-flex align-items-center text-dark"
+                                    style="cursor: pointer;"><i class="fas fa-file-upload me-2"></i>Tải thư mục
+                                    lên</label>
+                                <input type="hidden" name="parentFolder" value="@ViewBag.FolderId">
+                                <input type="file" id="folderUpload" name="files" style="display: none;" webkitdirectory
+                                    multiple onchange="this.form.submit()">
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <a class="text-dark" asp-action="Index" asp-controller="Home" class="active"><i class="fas fa-home"></i>
+                    Trang chủ</a>
+                <a class="text-dark" asp-action="MyFile" asp-controller="Navigation"><i class="fas fa-folder"></i>
+                    DOCTYPE của tôi</a>
+                <a class="text-dark" asp-action="ShareFile" asp-controller="Navigation"><i class="fas fa-share-alt"></i>
+                    Được chia sẻ với tôi</a>
+                <a class="text-dark" asp-action="NearFile" asp-controller="Navigation"><i class="fas fa-history"></i>
+                    Gần đây</a>
+                <a class="text-dark" asp-action="StarFile" asp-controller="Navigation"><i class="fas fa-star"></i> Có
+                    gắn dấu sao</a>
+                <a class="text-dark" asp-action="Index" asp-controller="Trash"><i class="fas fa-trash-alt"></i> Thùng
+                    rác</a>
+                <a class="text-dark" asp-action="MyStorage" asp-controller="Navigation"><i class="fas fa-database"></i>
+                    Bộ nhớ</a>
+                <p class="text-center mt-4">Đã sử dụng 7,63 GB trong tổng số 15 GB</p>
+                <button onclick="alert('Chức năng đang phát triển')"
+                    class="btn-storage btn btn-outline-danger w-100">Mua thêm bộ nhớ</button>
+            </div>
+            <div class="col-md-9 main-content">
+                <main>@RenderBody()</main>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7U7E2U6A2qYjE4kfIzm1sHq1OHOijwP7xA6b"
+        crossorigin="anonymous"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/main.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
+<script>
+    function viewFile(FilePath, fileType) {
+        var modal = new bootstrap.Modal(document.getElementById('fileModal'));
+        var modalBody = document.getElementById('modal-body');
+        modalBody.innerHTML = '';
+        var fileUrl = '@Url.Content("~/")' + FilePath.replace('~/', '');
+        if (fileType.includes("image")) { modalBody.innerHTML = `<img src='${fileUrl}' class='img-fluid' alt='file image' style="margin-left:30%"/>`; }
+        else if (fileType.includes("pdf")) { modalBody.innerHTML = `<iframe src='${fileUrl}' width='100%' height='100%'></iframe>`; }
+        else if (fileType.includes("audio")) { modalBody.innerHTML = `<audio controls><source src='${fileUrl}' type='audio/mpeg'>Your browser does not support the audio element.</audio>`; }
+        else if (fileType.includes("video")) { modalBody.innerHTML = `<video controls width='100%' height='100%'><source src='${fileUrl}' type='video/mp4'>Your browser does not support the video element.</video>`; }
+        else { modalBody.innerHTML = `<p>Không thể hiển thị file này.</p>`; }
+        modal.show();
+    }
+    function toggleFolderFavorite(folderId, starElement) {
+        $.ajax({
+            url: '@Url.Action("ToggleFavorite", "Folder")',
+            type: 'POST',
+            data: { folderId: folderId },
+            success: function (response) {
+                if (response.success) { if (response.isFavorite) { $(starElement).addClass('text-warning'); } else { $(starElement).removeClass('text-warning'); } }
+                else { alert(response.message || "Có lỗi xảy ra. Vui lòng thử lại."); }
+            },
+            error: function (jqXHR) { alert("Có lỗi xảy ra khi kết nối đến server: " + jqXHR.responseText); }
+        });
+    }
+    function toggleFileFavorite(fileId, starElement) {
+        $.ajax({
+            url: '@Url.Action("ToggleFavorite", "Folder")',
+            type: 'POST',
+            data: { fileId: fileId },
+            success: function (response) {
+                if (response.success) { if (response.isFavorite) { $(starElement).addClass('text-warning'); } else { $(starElement).removeClass('text-warning'); } }
+                else { alert(response.message || "Có lỗi xảy ra. Vui lòng thử lại."); }
+            },
+            error: function (jqXHR) { alert("Có lỗi xảy ra khi kết nối đến server: " + jqXHR.responseText); }
+        });
+    }
+</script>

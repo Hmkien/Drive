@@ -1,0 +1,25 @@
+<div class="modal fade" id="createFolderModal" tabindex="-1" aria-labelledby="createFolderModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createFolderModalLabel">Thư Mục Mới</h5>
+            </div>
+            <div class="modal-body">
+                <form asp-action="CreateFolder" asp-controller="Home">
+                    <div class="mb-3">
+                        <input type="hidden" name="parentFolder" value="@ViewBag.FolderId">
+                        <input type="text" class="form-control border-1" id="folderName" name="FolderName"
+                            placeholder="Nhập tên thư mục">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal"
+                            style="color: #ae6551; font-weight: 600; font-size: 1.2em;">Hủy</button>
+                        <button type="submit" class="btn"
+                            style="color: #ae6551; font-weight: 600; font-size: 1.2em;">Tạo Thư Mục</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

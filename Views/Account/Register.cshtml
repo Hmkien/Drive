@@ -1,0 +1,43 @@
+@{
+    Layout = "_LayoutLogin";
+}
+<div class="row d-flex justify-content-center align-items-center" style="margin-top: 10em;">
+    <div class="col-md-6 col-lg-4">
+        <div class="card p-4">
+            <h1 class="text-center text-info">Đăng Kí</h1>
+            <form asp-action="Register" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger list-unstyled"></div>
+                <div class="mb-1">
+                    <label for="Name">Tên đăng nhập:</label>
+                    <input type="text" id="Name" name="Name" class="form-control" placeholder="Tên đăng nhập">
+                    <span class="text-danger" id="name-validation"></span>
+                </div>
+                <div class="mb-1">
+                    <label for="Email">Email</label>
+                    <input type="email" id="Email" name="Email" class="form-control" placeholder="Email">
+                    <span class="text-danger" id="email-validation"></span>
+                </div>
+                <div class="mb-1">
+                    <label for="Password">Mật khẩu:</label>
+                    <input type="password" id="Password" name="Password" class="form-control" placeholder="Mật khẩu">
+                    <span class="text-danger" id="password-validation"></span>
+                </div>
+
+                <div class="mb-1">
+                    <label for="ConfirmPassword">Xác nhận mật khẩu</label>
+                    <input type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control"
+                        placeholder="Xác nhận mật khẩu">
+                    <span class="text-danger" id="confirm-password-validation"></span>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <a asp-controller="Account" asp-action="Login" class="text-decoration-none float-start mt-2">Bạn
+                            đã có tài khoản?</a>
+                    </div>
+                    <div class="col-4 mt-2">
+                        <input type="submit" value="Đăng kí" class="btn btn-danger btn-md float-end">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

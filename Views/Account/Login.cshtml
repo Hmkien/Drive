@@ -1,0 +1,38 @@
+@{
+    Layout = "_LayoutLogin";
+}
+<div class="row d-flex justify-content-center align-items-center" style="margin-top: 10em;">
+    <div class="col-md-6 col-lg-4">
+        <div class="card p-4">
+            <h1 class="text-center text-info mb-4">Đăng Nhập</h1>
+            <form asp-action="Login" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger list-unstyled"></div>
+                <div class="mb-3">
+                    <label for="Username">Tên đăng nhập:</label>
+                    <input type="text" id="Username" name="Username" class="form-control" placeholder="Tên đăng nhập">
+                    <span class="text-danger" id="username-validation"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="Password">Mật khẩu</label>
+                    <input type="password" id="Password" name="Password" class="form-control" placeholder="Mật khẩu">
+                    <span class="text-danger" id="password-validation"></span>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" id="RememberMe" name="RememberMe" class="form-check-input">
+                    <label for="RememberMe" class="form-check-label">Nhớ mật khẩu</label>
+                </div>
+
+                <div class="row">
+                    <div class="col-8">
+                        <p class="mt-2">
+                            <a asp-controller="Account" asp-action="register" class="text-decoration-none">Bạn không có
+                                tài khoản?</a>
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <input type="submit" value="Login" class="btn btn-danger btn-block">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

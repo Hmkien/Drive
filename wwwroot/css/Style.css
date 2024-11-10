@@ -1,0 +1,291 @@
+.sidebar {
+    background-color: #f7f5f4;
+    height: 100vh;
+    padding-top: 20px;
+}
+.sidebar a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+.sidebar a:hover, .sidebar a.active {
+    background-color: #f2d7d0;
+    color: #d9534f;
+    border-radius: 10px;
+}
+.sidebar a i {
+    margin-right: 10px;
+}
+.main-content {
+    padding: 20px;
+    background-color: #fff;
+}
+.document-list {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+.document-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+.document-item i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+/* Styles for the "+ Mới" button */
+.btn-new {
+    background-color: #fff; /* Blue color */
+    color: black;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-new:hover {
+    background-color: #f2d7d0; /* Darker blue on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.btn-storage {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    color: #dc3545;
+    border-color: #dc3545;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-storage:hover {
+    background-color: #dc3545; 
+    color: #fff;
+    cursor: pointer;
+}
+.btn-new {
+max-height: 2.7em;
+    min-width: 6em;
+    padding-top: 2em;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.card {
+    width: calc(25% - 15px); /* Mỗi thẻ chiếm 25% chiều rộng, trừ khoảng cách */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.card .file-type {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.file-type-docx {
+    color: #007bff; /* Màu xanh cho file DOCX */
+}
+
+.file-type-pdf {
+    color: #dc3545; /* Màu đỏ cho file PDF */
+}
+
+.title {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.footer {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.status {
+    display: block;
+    margin-top: 5px;
+}
+
+
+.actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+    padding: 10px 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 8px 20px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Hiển thị menu khi hover vào nút ba dấu chấm */
+
+
+/* Card content */
+.card-body {
+    text-align: center;
+}
+
+.card-body i {
+    color: #007bff;
+}
+
+.card-title {
+    margin-top: 10px;
+    font-size: 1em;
+}
+
+.card-text {
+    font-size: 0.9em;
+    color: #777;
+}
+.dropdown-toggle {
+    display: none;
+}
+.custom-input {
+    border-radius: 20px; /* Rounded corners */
+    background-color: #e2e6eb; /* Light blue background */
+    border: none; /* Removes border */
+    padding-left: 10px; /* Left padding for text */
+    box-shadow: none; /* Remove inner shadow */
+    width: 90%;
+    height: 3em;
+}
+.input-group-text {
+    background-color:  #e2e6eb; /* Match input background */
+    border: none; /* Remove border */
+    padding-right: 0; /* Adjust padding */
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.custom-input:focus {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25); /* Optional subtle shadow on focus */
+    outline: none; /* Remove blue outline */
+}
+.custom-input::placeholder {
+    color: #7d7b7b58; /* Placeholder color */
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #f7f5f4;
+    padding-top: 20px;
+}
+
+/* Ensure main content doesn't get hidden behind sidebar */
+.main-content {
+    margin-left: 250px;
+    /* Width of the sidebar */
+}
+
+/* Optional: make sure sidebar is responsive on small screens */
+@media(max-width: 768px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}
+.navbar {
+    background-color: #f7f5f4;
+}
+
+.navbar .d-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar img {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+}
+
+.navbar i {
+    font-size: 1.5em;
+    margin-right: 1.2em;
+}
+
+.navbar i {
+    color: black;
+    padding-bottom: 0.5em;
+}
+.empty-trash {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    color: #6c757d; /* Màu xám nhạt */
+    text-align: center;
+}
+
+.trash-icon {
+    font-size: 10em;
+    margin-bottom: 10px;
+    color: #adb5bd;
+}
+
+.empty-trash h3 {
+    font-size: 4em;
+    font-weight: normal;
+}

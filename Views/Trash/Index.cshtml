@@ -1,0 +1,71 @@
+@model List<Drive.Models.Trash>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="empty-trash">
+        <i class="fas fa-trash-alt trash-icon"></i>
+        <h3>Thùng rác trống</h3>
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width: 50%;">Tên</th>
+                <th class="text-center">Chủ sở hữu</th>
+                <th class="text-center">Địa điểm</th>
+                <th class="text-center">Thời gian xóa</th>
+                <th class="text-center"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="document-item">
+
+                            @if (item.ItemType == "Folder")
+                            {
+                                <i class="fas fa-folder text-warning"></i> <span>@item.Folder?.FolderName</span>
+                            }
+                            else if (item.ItemType == "File")
+                            {
+                                <a class="text-decoration-none text-dark"
+                                    onclick="viewFile('@item.File.FilePath', '@item.File.FileType')"></a>
+                                <i class="fas fa-file-alt text-primary"></i> <span>@item.File?.FileName</span>
+                            }
+                        </div>
+                    </td>
+                    <td class="text-center">Tôi</td>
+                    <td class="text-center"><i class="fas fa-folder"></i> DOCTYPE của tôi</td>
+                    <td class="text-center">@item.DeletedAt.ToString("dd / MM / yyyy")</td>
+                    <td class="text-center">
+                        <div class="dropdown">
+                            <button class="btn  " type="button" id="actionDropdown" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="fas fa-ellipsis-v"></i> </button>
+                            <ul class="dropdown-menu" aria-labelledby="actionDropdown">
+                                <li>
+                                    <a class="dropdown-item text-danger" asp-route-id="@item.TrashId" asp-action="Delete"
+                                        asp-controller="Trash">
+                                        <i class="fas fa-trash-alt"></i> Xóa
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-success" asp-route-id="@item.TrashId" asp-action="Restore"
+                                        asp-controller="Trash">
+                                        <i class="fas fa-undo"></i> Khôi phục
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@await Html.PartialAsync("_Model")

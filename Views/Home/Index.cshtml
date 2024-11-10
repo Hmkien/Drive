@@ -1,0 +1,122 @@
+@model Drive.Models.ViewModels.FolderViewModel
+
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<div class="container mt-3">
+    <form asp-action="Search" method="post">
+        <div class="input-group m-5">
+            <button type="submit" class="input-group-text" id="search-icon">
+                <i class="fas fa-search"></i>
+            </button>
+            <input type="text" name="keySeach" class="form-control-lg custom-input" placeholder="Tìm kiếm trong Drive"
+                   aria-label="Search" aria-describedby="search-icon">
+        </div>
+    </form>
+
+    @if ((Model.FolderList == null || !Model.FolderList.Any()) && (Model.FileList == null || !Model.FileList.Any()))
+    {
+        <div class="empty-trash">
+            <i class="fas fa-folder trash-icon"></i>
+            <h3>Trống</h3>
+        </div>
+    }
+
+    @if ((Model.FolderList != null && Model.FolderList.Any()) || (Model.FileList != null && Model.FileList.Any()))
+    {
+        <h5>Thư mục đề xuất</h5>
+        <div class="d-flex justify-content-start gap-5">
+            @foreach (var folder in Model.FolderList)
+            {
+                <div class="card me-2" style="width: 12rem; position: relative;">
+                    <div style="position: absolute; top: 5px; left: 5px;">
+                        <i class="bi bi-star @(folder.Star ? "text-warning" : "")" style="cursor: pointer;"
+                           onclick="toggleFolderFavorite(@folder.FolderId, this)"></i>
+                    </div>
+                    <div class="actions dropdown">
+                        <i class="fas fa-ellipsis-v" id="dropdownMenuButton-@folder.FolderId" data-bs-toggle="dropdown"
+                           aria-expanded="false"></i>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-@folder.FolderId">
+                            <li><a class="dropdown-item" asp-action="FolderDetail" asp-controller="Folder" asp-route-id="@folder.FolderId">Xem chi tiết</a></li>
+                            <li><a class="dropdown-item" asp-action="Delete" asp-controller="Home" asp-route-id="@folder.FolderId">Xóa</a></li>
+                        </ul>
+                    </div>
+                    <a class="text-decoration-none" asp-action="FolderDetail" asp-controller="Folder" asp-route-id="@folder.FolderId">
+                        <div class="card-body">
+                            <i class="fas fa-folder fa-2x text-dark"></i>
+                            <h6 class="card-title mt-2 text-dark">@folder.FolderName</h6>
+                            <p class="card-text">@folder.CreatedAt</p>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+
+        <h5 class="mt-4">Tài liệu đề xuất</h5>
+        <table class="table table-lg" style="width: 110%">
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Tên</th>
+                    <th class="text-center">Ngày đăng</th>
+                    <th class="text-center">Chủ sở hữu</th>
+                    <th class="text-center">Địa điểm</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var file in Model.FileList)
+                {
+                    <tr>
+                        <td>
+                            <div class="document-item">
+                                @{
+                                    string iconClass = file.FileType switch
+                                    {
+                                        "application/msword" or "application/vnd.openxmlformats-officedocument.wordprocessingml.document" => "fas fa-file-word text-primary",
+                                        "application/vnd.ms-excel" or "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" => "fas fa-file-excel text-success",
+                                        "application/vnd.ms-powerpoint" or "application/vnd.openxmlformats-officedocument.presentationml.presentation" => "fas fa-file-powerpoint text-danger",
+                                        "image/jpeg" or "image/png" or "image/gif" => "fas fa-file-image text-warning",
+                                        "application/zip" or "application/x-zip-compressed" or "application/x-rar-compressed" => "fas fa-file-archive text-muted",
+                                        "audio/mpeg" or "audio/wav" => "fas fa-file-audio text-info",
+                                        "video/mp4" => "fas fa-file-video text-dark",
+                                        _ => "fas fa-file text-secondary"
+                                    };
+                                }
+                                <i class="@iconClass"></i>
+                                <a class="text-decoration-none text-dark" onclick="viewFile('@file.FilePath', '@file.FileType')">
+                                    <span>@file.FileName</span>
+                                </a>
+                            </div>
+                        </td>
+                        <td class="text-center">@file.UploadedAt.ToString("dd / MM / yyyy")</td>
+                        <td class="text-center">Tôi</td>
+                        <td class="text-center"><i class="fas fa-folder"></i> DOCTYPE của tôi</td>
+                        <td class="text-center">
+                            <div class="dropdown">
+                                <button class="btn" type="button" id="actionDropdown" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="actionDropdown">
+                                    <li>
+                                        <a class="dropdown-item text-danger" asp-route-id="@file.FileId" asp-action="Delete" asp-controller="Home">
+                                            <i class="fas fa-trash-alt"></i> Xóa
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success" asp-route-id="@file.FileId" asp-action="Download" asp-controller="File">
+                                            <i class="fas fa-download"></i> Tải xuống
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+}
+
+@await Html.PartialAsync("_ModelView")
+@await Html.PartialAsync("_Model")
