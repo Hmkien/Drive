@@ -7,6 +7,7 @@ using System.Security.Claims;
 using Drive.Data;
 using Microsoft.EntityFrameworkCore;
 using Drive.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Drive.Controllers;
 [Authorize]
@@ -34,7 +35,10 @@ public class HomeController : Controller
             .Where(e => e.UserId == userId && e.isDelete == false)
             .Take(10)
             .ToListAsync();
+        var folderList = _context.Folders.ToList();
+        folderList.Insert(0, new Folder { FolderId = -1, FolderName = "Không có thư mục" });
 
+        ViewData["FolderList"] = new SelectList(folderList, "FolderId", "FolderName");
         var model = new FolderViewModel
         {
             FileList = files,
@@ -73,7 +77,7 @@ public class HomeController : Controller
         }
 
     }
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> DeleteFolder(int id)
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         if (userId == null)
@@ -103,7 +107,21 @@ public class HomeController : Controller
             }
             return RedirectToAction("Index");
         }
-
+        return RedirectToAction("Index");
+    }
+    public async Task<IActionResult> Delete(int id)
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (userId == null)
+        {
+            return Unauthorized();
+        }
+        var trash = new Trash
+        {
+            UserId = userId,
+            DeletedAt = DateTime.Now,
+            ExpirationDate = DateTime.Now.AddDays(30)
+        };
         var file = await _context.Files.FindAsync(id);
         if (file != null)
         {
@@ -142,6 +160,131 @@ public class HomeController : Controller
 
         return View(model);
     }
+    [HttpPost]
+    public async Task<IActionResult> RenameFile(int FileId, int? FolderId, string newFileName)
+    {
+        if (string.IsNullOrWhiteSpace(newFileName))
+        {
+            return BadRequest("Tên file mới không được để trống.");
+        }
 
+        var file = await _context.Files.FindAsync(FileId);
+        if (file == null)
+        {
+            return NotFound("Không tìm thấy file.");
+        }
+
+        file.FileName = newFileName;
+        await _context.SaveChangesAsync();
+        if (FolderId != null)
+        {
+            return RedirectToAction("FolderDetail", "Folder", new { id = FolderId });
+        }
+        return RedirectToAction("Index", "Home");
+    }
+    [HttpPost]
+    public async Task<IActionResult> RenameFolder(int FolderId, int? parentFolderId, string newFolderName)
+    {
+        if (string.IsNullOrWhiteSpace(newFolderName))
+        {
+            return BadRequest("Tên file mới không được để trống.");
+        }
+
+        var folder = await _context.Folders.FindAsync(FolderId);
+        if (folder == null)
+        {
+            return NotFound("Không tìm thấy file.");
+        }
+
+        folder.FolderName = newFolderName;
+        await _context.SaveChangesAsync();
+        if (parentFolderId != null)
+        {
+            return RedirectToAction("FolderDetail", "Folder", new { id = parentFolderId });
+        }
+        return RedirectToAction("Index", "Home");
+    }
+    [HttpPost]
+    public async Task<IActionResult> MovingFile(int FileId, int? FolderId, int DesFolderId)
+    {
+        if (DesFolderId < 0)
+        {
+            var fileInitial = await _context.Files.FindAsync(FileId);
+            if (fileInitial == null)
+            {
+                return NotFound("Không tìm thấy file.");
+            }
+            fileInitial.Folder = null;
+            fileInitial.FolderId = null;
+            await _context.SaveChangesAsync();
+            if (FolderId != null)
+            {
+                return RedirectToAction("FolderDetail", "Folder", new { id = FolderId });
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        var folder = await _context.Folders.FindAsync(DesFolderId);
+        if (folder == null)
+        {
+            return NotFound("Không tìm thấy thư mục đích.");
+        }
+
+        var file = await _context.Files.FindAsync(FileId);
+        if (file == null)
+        {
+            return NotFound("Không tìm thấy file.");
+        }
+
+        file.Folder = folder;
+        file.FolderId = folder.FolderId;
+        await _context.SaveChangesAsync();
+
+        if (FolderId != null)
+        {
+            return RedirectToAction("FolderDetail", "Folder", new { id = FolderId });
+        }
+        return RedirectToAction("Index", "Home");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> MovingFolder(int FolderId, int? parentFolderId, int DesFolderId)
+    {
+        var folderInitial = await _context.Folders.FindAsync(FolderId);
+
+        if (DesFolderId < 0)
+        {
+            if (folderInitial == null)
+            {
+                return NotFound("Không tìm thấy thư mục.");
+            }
+
+            folderInitial.ParentFolderId = null;
+            await _context.SaveChangesAsync();
+            return parentFolderId != null
+                ? RedirectToAction("FolderDetail", "Folder", new { id = parentFolderId })
+                : RedirectToAction("Index", "Home");
+        }
+        var destinationFolder = await _context.Folders.FindAsync(DesFolderId);
+        if (destinationFolder == null)
+        {
+            return NotFound("Không tìm thấy thư mục đích.");
+        }
+        if (destinationFolder.FolderId == FolderId)
+        {
+            return BadRequest("Không thể di chuyển thư mục vào chính nó.");
+        }
+        if (folderInitial == null)
+        {
+            return NotFound("Không tìm thấy thư mục cần di chuyển.");
+        }
+
+        folderInitial.ParentFolderId = DesFolderId;
+        await _context.SaveChangesAsync();
+        return parentFolderId != null
+            ? RedirectToAction("FolderDetail", "Folder", new { id = parentFolderId })
+            : RedirectToAction("Index", "Home");
+    }
 
 }
+
+

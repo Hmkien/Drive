@@ -1,0 +1,23 @@
+<div class="modal fade" id="renameModal" tabindex="-1" aria-labelledby="renameModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="renameModalLabel">Đổi tên</h5>
+            </div>
+            <form method="post" asp-action="RenameFile" asp-controller="Home">
+                <div class="modal-body">
+                    <input type="hidden" name="FolderId" value="@ViewBag.FolderId">
+                    <input type="hidden" name="FileId" id="fileIdInput">
+                    <div class="mb-3">
+                        <label for="newFileName" class="form-label">Tên mới</label>
+                        <input type="text" class="form-control" id="newFileName" name="newFileName" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

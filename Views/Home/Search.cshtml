@@ -16,37 +16,52 @@
     </div>
 
     <div class="d-flex justify-content-start gap-5 mb-5">
-        @foreach (var folder in Model.FolderList)
+        @if ((Model.FolderList != null && Model.FolderList.Any()))
         {
-            <div class="card me-2" style="width: 12rem; position: relative;">
-                <div style="position: absolute; top: 5px; left: 5px;">
-                    <i class="bi bi-star @(folder.Star ? "text-warning" : "")"
-                       style="cursor: pointer;"
-                       onclick="toggleFolderFavorite(@folder.FolderId, this)"></i>
-                </div>
-
-                <div class="actions dropdown">
-                    <i class="fas fa-ellipsis-v" id="dropdownMenuButton-@folder.FolderId" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="dropdown-toggle"></span>
-                    </i>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-@folder.FolderId">
-                        <li><a class="dropdown-item" asp-action="FolderDetail" asp-controller="Folder" asp-route-id="@folder.FolderId">Xem chi tiết</a></li>
-                        <li><a class="dropdown-item" asp-action="Delete" asp-controller="Home" asp-route-id="@folder.FolderId">Xóa</a></li>
-                    </ul>
-                </div>
-                <a class="text-decoration-none" asp-action="FolderDetail" asp-controller="Folder" asp-route-id="@folder.FolderId">
-                    <div class="card-body">
-                        <i class="fas fa-folder fa-2x text-dark"></i>
-                        <h6 class="card-title mt-2 text-dark">@folder.FolderName</h6>
-                        <p class="card-text">@folder.CreatedAt.ToString("dd/MM/yyyy")</p>
+            @foreach (var folder in Model.FolderList)
+            {
+                <div class="card me-2" style="width: 12rem; position: relative;">
+                    <div style="position: absolute; top: 5px; left: 5px;">
+                        <i class="bi bi-star @(folder.Star ? "text-warning" : "")" style="cursor: pointer;"
+                            onclick="toggleFolderFavorite(@folder.FolderId, this)"></i>
                     </div>
-                </a>
-            </div>
+
+                    <div class="actions dropdown">
+                        <i class="fas fa-ellipsis-v" id="dropdownMenuButton-@folder.FolderId" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="dropdown-toggle"></span>
+                        </i>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-@folder.FolderId">
+                            <li><a class="dropdown-item" asp-action="FolderDetail" asp-controller="Folder"
+                                    asp-route-id="@folder.FolderId">Xem chi tiết</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#" onclick="openMoveFolderModal('@folder.FolderId')"> Di chuyển</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" onclick="openRenameFolderModal('@folder.FolderId')">Đổi tên</a>
+                            </li>
+                            <li><a class="dropdown-item" asp-action="DeleteFolder" asp-controller="Home"
+                                    asp-route-id="@folder.FolderId">Xóa</a></li>
+                        </ul>
+                    </div>
+                    <a class="text-decoration-none" asp-action="FolderDetail" asp-controller="Folder"
+                        asp-route-id="@folder.FolderId">
+                        <div class="card-body">
+                            <i class="fas fa-folder fa-2x text-dark"></i>
+                            <h6 class="card-title mt-2 text-dark">@folder.FolderName</h6>
+                            <p class="card-text">@folder.CreatedAt.ToString("dd/MM/yyyy")</p>
+                        </div>
+                    </a>
+                </div>
+            }
         }
+
     </div>
 
     <div class="d-flex justify-content-start gap-5">
-        @foreach (var file in Model.FileList)
+        @if ((Model.FileList != null && Model.FileList.Any()))
+        {
+ @foreach (var file in Model.FileList)
         {
             <div class="card me-2" style="width: 12rem; position: relative;">
                 <div style="position: absolute; top: 5px; left: 5px;">
@@ -54,12 +69,21 @@
                        style="cursor: pointer;"
                        onclick="toggleFileFavorite(@file.FileId, this)"></i>
                 </div>
-
                 <div class="actions dropdown">
                     <i class="fas fa-ellipsis-v" id="dropdownMenuButton-@file.FileId" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="dropdown-toggle"></span>
                     </i>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-@file.FileId">
+                        <li>
+                                        <a class="dropdown-item " href="#" onclick="openMoveModal('@file.FileId')">
+                                            <i class="fas fa-folder"></i> Di chuyển
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item " href="#" onclick="openRenameModal('@file.FileId')">
+                                            <i class="fas fa-pen"></i> Đổi tên
+                                        </a>
+                                    </li>
                         <li><a class="dropdown-item" asp-route-id="@file.FileId" asp-action="Download" asp-controller="File">Tải xuống</a></li>
                         <li><a class="dropdown-item" asp-action="Delete" asp-controller="Home" asp-route-id="@file.FileId">Xóa</a></li>
                     </ul>
@@ -87,7 +111,8 @@
                 </a>
             </div>
         }
+        }
+
     </div>
 }
-<partial name="_Model"></partial>
-@await Html.PartialAsync("_ModelView");
+

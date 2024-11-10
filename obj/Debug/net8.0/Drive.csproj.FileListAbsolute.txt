@@ -289,3 +289,4 @@ D:\Dự án\Drive\obj\Debug\net8.0\refint\Drive.dll
 D:\Dự án\Drive\obj\Debug\net8.0\Drive.pdb
 D:\Dự án\Drive\obj\Debug\net8.0\Drive.genruntimeconfig.cache
 D:\Dự án\Drive\obj\Debug\net8.0\ref\Drive.dll
+D:\Dự án\Drive\obj\Debug\net8.0\Drive.sourcelink.json

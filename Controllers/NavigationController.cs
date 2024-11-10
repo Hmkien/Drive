@@ -45,7 +45,10 @@ namespace Drive.Controllers
                 FileList = files,
                 FolderList = folders,
             };
+            var folderList = _context.Folders.ToList();
+            folderList.Insert(0, new Folder { FolderId = -1, FolderName = "Không có thư mục" });
 
+            ViewData["FolderList"] = new SelectList(folderList, "FolderId", "FolderName");
             return View(model);
         }
         public async Task<IActionResult> NearFile()
@@ -69,7 +72,10 @@ namespace Drive.Controllers
                 FileList = files,
                 FolderList = folders,
             };
+            var folderList = _context.Folders.ToList();
+            folderList.Insert(0, new Folder { FolderId = -1, FolderName = "Không có thư mục" });
 
+            ViewData["FolderList"] = new SelectList(folderList, "FolderId", "FolderName");
             return View(model);
         }
         public async Task<IActionResult> StarFile()
@@ -93,7 +99,10 @@ namespace Drive.Controllers
                 FileList = files,
                 FolderList = folders,
             };
+            var folderList = _context.Folders.ToList();
+            folderList.Insert(0, new Folder { FolderId = -1, FolderName = "Không có thư mục" });
 
+            ViewData["FolderList"] = new SelectList(folderList, "FolderId", "FolderName");
             return View(model);
         }
         public async Task<IActionResult> MyStorage()

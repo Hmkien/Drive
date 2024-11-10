@@ -97,6 +97,12 @@
     <script src="~/js/main.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+@await Html.PartialAsync("_ModelView")
+@await Html.PartialAsync("_Model")
+@await Html.PartialAsync("_ModelRename")
+@await Html.PartialAsync("_ModelRenameFolder")
+@await Html.PartialAsync("ModelMoving")
+@await Html.PartialAsync("ModelMovingFolder")
 
 </html>
 <script>
@@ -105,7 +111,7 @@
         var modalBody = document.getElementById('modal-body');
         modalBody.innerHTML = '';
         var fileUrl = '@Url.Content("~/")' + FilePath.replace('~/', '');
-        if (fileType.includes("image")) { modalBody.innerHTML = `<img src='${fileUrl}' class='img-fluid' alt='file image' style="margin-left:30%"/>`; }
+        if (fileType.includes("image")) { modalBody.innerHTML = `<img src='${fileUrl}' class='img-fluid' alt='file image' />`; }
         else if (fileType.includes("pdf")) { modalBody.innerHTML = `<iframe src='${fileUrl}' width='100%' height='100%'></iframe>`; }
         else if (fileType.includes("audio")) { modalBody.innerHTML = `<audio controls><source src='${fileUrl}' type='audio/mpeg'>Your browser does not support the audio element.</audio>`; }
         else if (fileType.includes("video")) { modalBody.innerHTML = `<video controls width='100%' height='100%'><source src='${fileUrl}' type='video/mp4'>Your browser does not support the video element.</video>`; }
@@ -136,4 +142,27 @@
             error: function (jqXHR) { alert("Có lỗi xảy ra khi kết nối đến server: " + jqXHR.responseText); }
         });
     }
+    function openRenameModal(fileId) {
+        document.getElementById('fileIdInput').value = fileId;
+        var renameModal = new bootstrap.Modal(document.getElementById('renameModal'));
+        renameModal.show();
+    }
+    function openRenameFolderModal(folderId) {
+        document.getElementById('folderIdInput').value = folderId;
+        var renameModal = new bootstrap.Modal(document.getElementById('renameFolderModal'));
+        renameModal.show();
+    }
+
+    function openMoveModal(fileId) {
+        document.getElementById('moveFileId').value = fileId;
+        var moveModal = new bootstrap.Modal(document.getElementById('moveModal'));
+        moveModal.show();
+    }
+    function openMoveFolderModal(folderId) {
+        document.getElementById('moveFolderId').value = folderId;
+        var moveModal = new bootstrap.Modal(document.getElementById('moveFolderModal'));
+        moveModal.show();
+    }
+
+
 </script>

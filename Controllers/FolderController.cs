@@ -38,6 +38,10 @@ namespace Drive.Controllers
                 FileList = await _context.Files.Where(e => e.FolderId == id && e.isDelete == false).ToListAsync(),
 
             };
+            var folderList = _context.Folders.ToList();
+            folderList.Insert(0, new Folder { FolderId = -1, FolderName = "Không có thư mục" });
+
+            ViewData["FolderList"] = new SelectList(folderList, "FolderId", "FolderName");
             ViewData["FolderId"] = id;
             return View(viewModel);
         }

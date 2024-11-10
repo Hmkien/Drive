@@ -1,0 +1,25 @@
+<div class="modal fade" id="moveFolderModal" tabindex=" -1" aria-labelledby="moveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="moveModalLabel">Di chuyển tập tin</h5>
+            </div>
+            <form method="post" asp-action="MovingFolder" asp-controller="Home">
+                <div class="modal-body">
+                    <input type="hidden" name="FolderId" id="moveFolderId">
+                    <input type="hidden" name="parentFolderId" value="@ViewBag.FolderId">
+                    <div class="mb-3">
+                        <label for="destinationFolder" class="form-label">Chọn thư mục đích</label>
+                        <select asp-items="@ViewBag.FolderList" class="form-select" name="DesFolderId">
+                            <option value="">Chọn thư mục đích</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Di chuyển</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
