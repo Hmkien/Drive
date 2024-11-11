@@ -17,111 +17,111 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Drive
 build_property.RootNamespace = Drive
-build_property.ProjectDir = D:\Dự án\Drive\
+build_property.ProjectDir = d:\Dự án\Drive\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Dự án\Drive
+build_property.MSBuildProjectDirectory = d:\Dự án\Drive
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Dự án/Drive/Views/Account/AccessDenied.cshtml]
+[d:/Dự án/Drive/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Account/Login.cshtml]
+[d:/Dự án/Drive/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Account/Register.cshtml]
+[d:/Dự án/Drive/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Folder/FolderDetail.cshtml]
+[d:/Dự án/Drive/Views/Folder/FolderDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9sZGVyXEZvbGRlckRldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Home/Index.cshtml]
+[d:/Dự án/Drive/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Home/Search.cshtml]
+[d:/Dự án/Drive/Views/Home/Search.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWFyY2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Navigation/MyFile.cshtml]
+[d:/Dự án/Drive/Views/Navigation/MyFile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmF2aWdhdGlvblxNeUZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Navigation/MyStorage.cshtml]
+[d:/Dự án/Drive/Views/Navigation/MyStorage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmF2aWdhdGlvblxNeVN0b3JhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Navigation/NearFile.cshtml]
+[d:/Dự án/Drive/Views/Navigation/NearFile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmF2aWdhdGlvblxOZWFyRmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Navigation/ShareFile.cshtml]
+[d:/Dự án/Drive/Views/Navigation/ShareFile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmF2aWdhdGlvblxTaGFyZUZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Navigation/StarFile.cshtml]
+[d:/Dự án/Drive/Views/Navigation/StarFile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmF2aWdhdGlvblxTdGFyRmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Shared/Error.cshtml]
+[d:/Dự án/Drive/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Shared/ModelMoving.cshtml]
+[d:/Dự án/Drive/Views/Shared/ModelMoving.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1vZGVsTW92aW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Shared/ModelMovingFolder.cshtml]
+[d:/Dự án/Drive/Views/Shared/ModelMovingFolder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1vZGVsTW92aW5nRm9sZGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Shared/_LayoutLogin.cshtml]
+[d:/Dự án/Drive/Views/Shared/_LayoutLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Shared/_LoginPartial.cshtml]
+[d:/Dự án/Drive/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Shared/_Model.cshtml]
+[d:/Dự án/Drive/Views/Shared/_Model.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Nb2RlbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Shared/_ModelRename.cshtml]
+[d:/Dự án/Drive/Views/Shared/_ModelRename.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Nb2RlbFJlbmFtZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Shared/_ModelRenameFolder.cshtml]
+[d:/Dự án/Drive/Views/Shared/_ModelRenameFolder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Nb2RlbFJlbmFtZUZvbGRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Shared/_ModelView.cshtml]
+[d:/Dự án/Drive/Views/Shared/_ModelView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Nb2RlbFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Shared/_ValidationScriptsPartial.cshtml]
+[d:/Dự án/Drive/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Trash/Index.cshtml]
+[d:/Dự án/Drive/Views/Trash/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhc2hcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/_ViewImports.cshtml]
+[d:/Dự án/Drive/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/_ViewStart.cshtml]
+[d:/Dự án/Drive/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dự án/Drive/Views/Shared/_Layout.cshtml]
+[d:/Dự án/Drive/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-6zxhu9rdjg

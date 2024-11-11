@@ -27,12 +27,12 @@ public class HomeController : Controller
         }
 
         var folders = await _context.Folders
-            .Where(e => e.UserId == userId && e.isDelete == false)
+            .Where(e => e.UserId == userId && e.isDelete == false && e.ParentFolderId == null).OrderBy(e => e.CreatedAt)
             .Take(5)
             .ToListAsync();
 
         var files = await _context.Files
-            .Where(e => e.UserId == userId && e.isDelete == false)
+            .Where(e => e.UserId == userId && e.isDelete == false && e.Folder == null && e.FolderId == null)
             .Take(10)
             .ToListAsync();
         var folderList = _context.Folders.ToList();
